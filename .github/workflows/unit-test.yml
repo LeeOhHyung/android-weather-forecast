@@ -1,6 +1,9 @@
 name: Run Unit Tests
 
 on:
+  push:
+    branches:
+      - '*'
   pull_request:
     branches:
       - '*'
