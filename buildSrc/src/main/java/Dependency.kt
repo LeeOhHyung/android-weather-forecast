@@ -1,9 +1,27 @@
+import org.gradle.api.JavaVersion
+
+object BuildTypes {
+    const val DEBUG: String = "debug"
+    const val RELEASE: String = "release"
+}
+
+object SourceSets {
+    const val MAIN: String = "main"
+    const val TEST: String = "test"
+    const val AndroidTest: String = "androidTest"
+}
+
 object Apps {
+    val sourceCompatibility: JavaVersion = JavaVersion.VERSION_1_8
+    val targetCompatibility: JavaVersion = JavaVersion.VERSION_1_8
+    const val jvmTarget: String = "1.8"
     const val compileSdk: Int = 29
     const val minSdk: Int = 23
     const val targetSdk: Int = 29
+    const val buildToolVersion: String = "29.0.3"
     const val versionCode: Int = 1
     const val versionName: String = "1.0.0"
+    const val testInstrumentationRunner: String = "androidx.test.runner.AndroidJUnitRunner"
 }
 
 object Versions {
@@ -73,11 +91,11 @@ object Libs {
     const val koin = "org.koin:koin-android:${Versions.koin}"
     const val koinScope = "org.koin:koin-android-scope:${Versions.koin}"
     const val koinViewModel = "org.koin:koin-android-viewmodel:${Versions.koin}"
-    const val koinTest = "org.koin:koin-test:${Versions.koin}"
     const val lottie = "com.airbnb.android:lottie:${Versions.lottie}"
 }
 
 object TestLibs {
+    const val koinTest = "org.koin:koin-test:${Versions.koin}"
     const val junit = "junit:junit:${Versions.junit}"
     const val junitExt = "androidx.test.ext:junit:${Versions.junitExt}"
     const val espresso = "androidx.test.espresso:espresso-core:${Versions.espresso}"
