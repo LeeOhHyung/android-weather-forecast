@@ -24,6 +24,8 @@ jobs:
           pip install pytest
           pip install pytest-cov
           pytest --cov=./ --cov-report=xml
+          curl -s https://codecov.io/bash | bash
+        shell: bash
             
       - name: Upload coverage to Codecov
         uses: codecov/codecov-action@v1
