@@ -1,8 +1,6 @@
 name: Codecov
+
 on: 
-  push:
-    branches: 
-      - '*'
   pull_request:
     branches:
       - '*'
@@ -11,8 +9,10 @@ jobs:
   run:
     runs-on: ubuntu-latest
     steps:
+      - name: check coverage to Codecov
       - uses: actions/checkout@master
       - uses: codecov/codecov-action@v1
+        uses: ./
         with:
           token: ${{ secrets.CODECOV_TOKEN }} # not required for public repos
           file: ./coverage.xml # optional
