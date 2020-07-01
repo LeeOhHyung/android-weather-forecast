@@ -9,14 +9,20 @@ jobs:
   run:
     runs-on: ubuntu-latest
     steps:
-      - name: check coverage to Codecov
-      - uses: actions/checkout@master
-      - uses: codecov/codecov-action@v1
-        uses: ./
-        with:
-          token: ${{ secrets.CODECOV_TOKEN }} # not required for public repos
-          file: ./coverage.xml # optional
-          flags: unittests # optional
-          name: codecov-umbrella # optional
-          fail_ci_if_error: true # optional (default = false)
+        - uses: actions/checkout@master
+        - uses: codecov/codecov-action@v1
+  
+          with:
+            token: ${{ secrets.CODECOV_TOKEN }} # not required for public repos
+            file: ./coverage.xml # optional
+            flags: unittests # optional
+            name: codecov-umbrella # optional
+            fail_ci_if_error: true # optional (default = false)
+
+        - name: check coverage to Codecov
+          uses: ./
+          with: 
+            flags: unittest
+            name: codecov-1
+
           
