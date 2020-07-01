@@ -1,8 +1,8 @@
 name: Codecov
 
-on: 
-  pull_request:
-    branches:
+on:
+  push:
+    branches: 
       - '*'
 
 jobs:
