@@ -27,6 +27,7 @@ object Apps {
 object Versions {
     const val gradle: String = "4.0.0"
     const val kotlin: String = "1.3.72"
+    const val jacoco: String = "0.8.5"
 
     const val constraintLayout: String = "2.0.0-beta7"
     const val coreKtx: String = "1.3.0"
