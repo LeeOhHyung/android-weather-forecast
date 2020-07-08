@@ -1,5 +1,7 @@
 package kr.ohyung.weather.inject
 
+import kr.ohyung.weather.MainViewModel
+import org.koin.android.viewmodel.dsl.viewModel
 import org.koin.dsl.module
 
 /**
@@ -11,7 +13,7 @@ private val appModules = module {
 }
 
 private val viewModelModules = module {
-    /* explicitly empty */
+    viewModel { MainViewModel() }
 }
 
 private val apiModule = module {
