@@ -73,13 +73,6 @@ dependencies {
     implementation(Libs.recyclerview)
     implementation(Libs.cardview)
 
-    // Retrofit, OkHttp, Gson
-    implementation(Libs.retrofit2)
-    implementation(Libs.okHttp3)
-    implementation(Libs.converterGson)
-    implementation(Libs.adapterRxJava2)
-    implementation(Libs.gson)
-
     // RxJava2
     implementation(Libs.rxJava2)
     implementation(Libs.rxAndroid)
@@ -92,12 +85,6 @@ dependencies {
     implementation(Libs.lifeCycleCommonJava8)
     implementation(Libs.fragmentExt)
     implementation(Libs.activityExt)
-
-    // Room
-    implementation(Libs.roomRuntime)
-    implementation(Libs.roomKtx)
-    implementation(Libs.roomRxJava2)
-    kapt(Libs.roomCompiler)
 
     // Glide
     implementation(Libs.glide)
@@ -112,6 +99,9 @@ dependencies {
 
     // Lottie
     implementation(Libs.lottie)
+
+    // Logger
+    implementation(Libs.logger)
 
     // Testing
     testImplementation(TestLibs.junit)
