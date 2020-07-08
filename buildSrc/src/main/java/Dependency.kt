@@ -52,6 +52,8 @@ object Versions {
     const val glideOkHttpIntegration: String = "4.9.0"
     const val koin: String = "2.0.1"
     const val lottie: String = "3.4.0"
+    const val logger: String = "2.2.0"
+
     const val junit: String = "4.12"
     const val junitExt: String = "1.1.1"
     const val espresso: String = "3.2.0"
@@ -92,6 +94,7 @@ object Libs {
     const val koinScope = "org.koin:koin-android-scope:${Versions.koin}"
     const val koinViewModel = "org.koin:koin-android-viewmodel:${Versions.koin}"
     const val lottie = "com.airbnb.android:lottie:${Versions.lottie}"
+    const val logger = "com.orhanobut:logger:${Versions.logger}"
 }
 
 object TestLibs {
