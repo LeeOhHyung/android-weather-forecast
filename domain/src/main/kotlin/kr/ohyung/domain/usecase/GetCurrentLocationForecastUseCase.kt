@@ -13,6 +13,7 @@ import kr.ohyung.domain.entity.LocationLegalName
 import kr.ohyung.domain.exception.InvalidLocationException
 import kr.ohyung.domain.repository.ReverseGeocodingRepository
 import kr.ohyung.domain.repository.WeatherRepository
+import kr.ohyung.domain.usecase.base.SingleUseCase
 
 class GetCurrentLocationForecastUseCase(
     private val lat: Double,

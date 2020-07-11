@@ -1,4 +1,4 @@
-package kr.ohyung.domain.usecase
+package kr.ohyung.domain.usecase.base
 
 import io.reactivex.disposables.CompositeDisposable
 import kr.ohyung.domain.UseCase
