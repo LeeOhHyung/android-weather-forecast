@@ -19,7 +19,7 @@ data class Weather(
     val humidity: Int,
     val uvi: Double,
     val clouds: Int,
-    val visibility: Int,
+    val visibility: Int?,
     val windSpeed: Double, // meter per sec,
     val rain: Double?,
     val snow: Double?,

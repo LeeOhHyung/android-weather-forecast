@@ -5,6 +5,7 @@ package kr.ohyung.data.network.response
 
 import com.google.gson.annotations.SerializedName
 import kr.ohyung.data.Response
+import kr.ohyung.domain.entity.Weather
 
 data class OneCallHourlyWeatherResponse(
 
@@ -47,3 +48,33 @@ data class OneCallHourlyWeatherResponse(
     @SerializedName("weather")
     val weather: List<WeatherIconResponse>
 ): Response
+
+fun OneCallHourlyWeatherResponse.toEntity(
+    latitude: Double,
+    longitude: Double,
+    timezone: String,
+    timezoneOffset: Int,
+    uvi: Double
+): Weather =
+    Weather(
+        latitude = latitude,
+        longitude = longitude,
+        timezone = timezone,
+        timezoneOffset = timezoneOffset,
+        currentTimeInMillis = timeInMillis,
+        sunriseTimeInMillis = null,
+        sunsetTimeInMillis = null,
+        temp = temp,
+        feelsLike = feelsLike,
+        pressure = pressure,
+        humidity = humidity,
+        uvi = uvi,
+        clouds = clouds,
+        visibility = visibility,
+        windSpeed = windSpeed,
+        rain = rain?.hourPer1,
+        snow = snow?.hourPer1,
+        weatherName = weather.first().main,
+        weatherDescription = weather.first().description,
+        weatherIcon = weather.first().icon
+    )

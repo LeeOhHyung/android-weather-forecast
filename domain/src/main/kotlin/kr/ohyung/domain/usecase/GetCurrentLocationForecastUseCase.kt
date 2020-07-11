@@ -40,7 +40,7 @@ class GetCurrentLocationForecastUseCase(
                 }
             )
         else Single.error(
-            InvalidLocationException(message = "invalid latitude, longitude")
+            InvalidLocationException(message = "invalid latitude and longitude")
         )
 
     private fun checkLocationValidation(
