@@ -3,4 +3,4 @@
  */
 package kr.ohyung.domain.exception
 
-class LocationNotFoundException(message: String) : Exception(message = message)
+class LocationNotFoundException(message: String) : Exception(message)

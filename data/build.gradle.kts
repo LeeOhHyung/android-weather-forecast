@@ -15,7 +15,7 @@ android {
         versionCode = Apps.versionCode
         versionName = Apps.versionName
 
-        buildConfigField("String", "WEATHER_BASE_URL", "\"https://api.openweathermap.org/data/2.5\"")
+        buildConfigField("String", "WEATHER_BASE_URL", "\"https://api.openweathermap.org/data/2.5/\"")
         buildConfigField("String", "WEATHER_API_KEY", "\"229072594908000fcececd9a2a4c1b82\"")
     }
 

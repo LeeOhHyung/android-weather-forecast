@@ -3,4 +3,4 @@
  */
 package kr.ohyung.domain.exception
 
-class InvalidLatLonException(message: String) : Exception(message = message)
+class InvalidLatLonException(message: String) : Exception(message)
