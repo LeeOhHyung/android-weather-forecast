@@ -12,7 +12,7 @@ import kr.ohyung.data.network.response.WeatherIconResponse
 data class OneCallDailyWeatherResponse(
 
     @SerializedName("dt")
-    val dt: Long,
+    val timeInMillis: Long,
 
     @SerializedName("sunrise")
     val sunrise: Long,

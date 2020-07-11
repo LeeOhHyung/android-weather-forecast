@@ -9,7 +9,7 @@ import kr.ohyung.data.Response
 data class OneCallHourlyWeatherResponse(
 
     @SerializedName("dt")
-    val dt: Long,
+    val timeInMillis: Long,
 
     @SerializedName("temp")
     val temp: Double,
