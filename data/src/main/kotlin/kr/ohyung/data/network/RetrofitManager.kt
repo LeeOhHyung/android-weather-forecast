@@ -13,20 +13,22 @@ import java.util.concurrent.TimeUnit
 /**
  * Created by Lee Oh Hyoung on 2020/07/09.
  */
-object RetrofitManager {
+class RetrofitManager {
 
-    private const val TAG: String = "RetrofitManager"
+    companion object {
+        private const val TAG: String = "RetrofitManager"
 
-    private const val CONNECT_TIMEOUT: Long = 30L
-    private const val WRITE_TIMEOUT: Long = 30L
-    private const val READ_TIMEOUT: Long = 30L
+        private const val CONNECT_TIMEOUT: Long = 30L
+        private const val WRITE_TIMEOUT: Long = 30L
+        private const val READ_TIMEOUT: Long = 30L
+    }
 
     fun <T> create(service: Class<T>): T =
         getRetrofit().create(service)
 
     private fun getRetrofit() : Retrofit =
         Retrofit.Builder()
-            .baseUrl(BuildConfig.BASE_URL)
+            .baseUrl(BuildConfig.WEATHER_BASE_URL)
             .addConverterFactory(GsonConverterFactory.create())
             .addCallAdapterFactory(RxJava2CallAdapterFactory.create())
             .client(getOkHttpClient())
