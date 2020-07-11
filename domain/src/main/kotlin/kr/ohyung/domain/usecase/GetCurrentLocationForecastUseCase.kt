@@ -16,19 +16,20 @@ import kr.ohyung.domain.repository.WeatherRepository
 import kr.ohyung.domain.usecase.base.SingleUseCase
 
 class GetCurrentLocationForecastUseCase(
-    private val lat: Double,
-    private val lon: Double,
     private val weatherRepository: WeatherRepository,
     private val reverseGeocodingRepository: ReverseGeocodingRepository,
     executorScheduler: Scheduler = Schedulers.io(),
     postExecutionScheduler: Scheduler = AndroidSchedulers.mainThread()
 ) : SingleUseCase<Forecast>(executorScheduler, postExecutionScheduler) {
 
+    var latitude: Double = Double.MAX_VALUE
+    var longitude: Double = Double.MAX_VALUE
+
     override fun buildUseCaseSingle(): Single<Forecast> =
-        if(checkLocationValidation(lat, lon))
+        if(checkLocationValidation())
             Single.zip(
-                weatherRepository.getWeatherByLatLon(lat, lon),
-                reverseGeocodingRepository.getCurrentLegalName(lat, lon),
+                weatherRepository.getWeatherByLatLon(latitude, longitude),
+                reverseGeocodingRepository.getCurrentLegalName(latitude, longitude),
                 BiFunction { emptyCityForecast: Forecast, legalName: LocationLegalName ->
                     Forecast(
                         country = legalName.countryCode,
@@ -43,10 +44,7 @@ class GetCurrentLocationForecastUseCase(
             InvalidLocationException(message = "invalid latitude and longitude")
         )
 
-    private fun checkLocationValidation(
-        lat: Double,
-        lon: Double
-    ): Boolean =
-        (lat in 32.0..43.0 && lon in 124.0..132.0)
+    private fun checkLocationValidation(): Boolean =
+        (latitude in 32.0..43.0 && longitude in 124.0..132.0)
 
 }

@@ -16,7 +16,7 @@ interface WeatherApi : Api {
     fun getWeatherForecastByLatLon(
         @Query("lat") lat: Double,
         @Query("lon") lon: Double,
-        @Query("units") units: String,
+        @Query("units") units: String = "metric",
         @Query("appid") appid: String = BuildConfig.WEATHER_API_KEY
     ): Single<OneCallWeatherByLatLonResponse>
 }
