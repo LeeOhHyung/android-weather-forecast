@@ -10,7 +10,7 @@ import io.reactivex.functions.BiFunction
 import io.reactivex.schedulers.Schedulers
 import kr.ohyung.domain.entity.Forecast
 import kr.ohyung.domain.entity.LocationLegalName
-import kr.ohyung.domain.exception.InvalidLocationException
+import kr.ohyung.domain.exception.InvalidLatLonException
 import kr.ohyung.domain.repository.ReverseGeocodingRepository
 import kr.ohyung.domain.repository.WeatherRepository
 import kr.ohyung.domain.usecase.base.SingleUseCase
@@ -41,7 +41,7 @@ class GetCurrentLocationForecastUseCase(
                 }
             )
         else Single.error(
-            InvalidLocationException(message = "invalid latitude and longitude")
+            InvalidLatLonException(message = "invalid latitude and longitude")
         )
 
     private fun checkLocationValidation(): Boolean =
