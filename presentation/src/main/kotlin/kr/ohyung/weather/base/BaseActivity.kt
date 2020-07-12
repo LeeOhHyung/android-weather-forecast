@@ -22,7 +22,7 @@ abstract class BaseActivity<T: ViewDataBinding, VM: BaseViewModel> : AppCompatAc
 
     open fun setRecyclerView() { /* explicitly empty */ }
 
-    open fun observeData() { /* explicitly empty */ }
+    open fun observeLiveData() { /* explicitly empty */ }
 
     open fun setListener() { /* explicitly empty */ }
 
@@ -30,7 +30,7 @@ abstract class BaseActivity<T: ViewDataBinding, VM: BaseViewModel> : AppCompatAc
         super.onCreate(savedInstanceState)
         setBinding()
         setBindingVariable()
-        observeData()
+        observeLiveData()
         setRecyclerView()
         setListener()
         doOnStart()
