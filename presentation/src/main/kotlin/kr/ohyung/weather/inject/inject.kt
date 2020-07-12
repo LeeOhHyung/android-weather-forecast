@@ -33,8 +33,8 @@ private val viewModelModules = module {
 private val apiModule = module {
 
     // retrofit service
-    single { RetrofitManager().create(WeatherApi::class.java) as WeatherApi }
-    single { RetrofitManager().create(ReverseGeocodingApi::class.java) as ReverseGeocodingApi }
+    single { RetrofitManager.getWeatherRetrofit().create(WeatherApi::class.java) as WeatherApi }
+    single { RetrofitManager.getNaverMapRetrofit().create(ReverseGeocodingApi::class.java) as ReverseGeocodingApi }
 }
 
 val modules = listOf(appModules, viewModelModules, apiModule)
