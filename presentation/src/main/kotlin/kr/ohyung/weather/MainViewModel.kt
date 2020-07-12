@@ -1,5 +1,7 @@
 package kr.ohyung.weather
 
+import com.orhanobut.logger.Logger
+import kr.ohyung.domain.exception.InvalidLatLonException
 import kr.ohyung.domain.usecase.GetCurrentLocationForecastUseCase
 import kr.ohyung.weather.base.BaseViewModel
 
@@ -9,5 +11,20 @@ import kr.ohyung.weather.base.BaseViewModel
 class MainViewModel(
     private val getCurrentLocationForecastUseCase: GetCurrentLocationForecastUseCase
 ) : BaseViewModel() {
-    /* explicitly empty */
+
+    fun getForecast() =
+        getCurrentLocationForecastUseCase
+            .execute(Pair(32.4, 127.4)) // latitude, longitude
+            .subscribe({ forecast ->
+                // do something
+                Logger.d("forecast : $forecast")
+            }, { exception ->
+                Logger.d("error : ${exception.message.toString()}")
+
+                // handle error
+                if(exception is InvalidLatLonException) {
+                    /* explicitly empty */
+                }
+            })
+            .addDisposable()
 }

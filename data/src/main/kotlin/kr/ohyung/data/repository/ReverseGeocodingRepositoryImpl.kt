@@ -13,5 +13,5 @@ class ReverseGeocodingRepositoryImpl(
 ): ReverseGeocodingRepository {
 
     override fun getCurrentLegalName(lat: Double, lon: Double): Single<LocationLegalName> =
-        throw NotImplementedError()
+        Single.just(LocationLegalName(0, lat, lon, "emptyCountry", "emptyCode"))
 }
