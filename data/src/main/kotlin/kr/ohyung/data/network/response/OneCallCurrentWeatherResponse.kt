@@ -25,28 +25,28 @@ data class OneCallCurrentWeatherResponse(
     val feelsLike: Double?,
 
     @SerializedName("pressure")
-    val pressure: Int,
+    override val pressure: Int,
 
     @SerializedName("humidity")
-    val humidity: Int,
+    override val humidity: Int,
 
     @SerializedName("dew_point")
-    val dewPoint: Double,
+    override val dewPoint: Double,
 
     @SerializedName("uvi")
-    val uvi: Double,
+    override val uvi: Double,
 
     @SerializedName("clouds")
-    val clouds: Int,
+    override val clouds: Int,
 
     @SerializedName("visibility") // 가시거리
-    val visibility: Int?,
+    override val visibility: Int?,
 
     @SerializedName("wind_speed")
-    val windSpeed: Double,
+    override val windSpeed: Double,
 
     @SerializedName("wind_deg")
-    val windDeg: Int,
+    override val windDeg: Int,
 
     @SerializedName("rain")
     val rain: OneCallRainResponse?,
@@ -56,7 +56,8 @@ data class OneCallCurrentWeatherResponse(
 
     @SerializedName("weather")
     val weather: List<WeatherIconResponse>
-): Response
+
+): OneCallWeatherEssentialFieldsResponse()
 
 fun OneCallCurrentWeatherResponse.toEntity(
     latitude: Double,
