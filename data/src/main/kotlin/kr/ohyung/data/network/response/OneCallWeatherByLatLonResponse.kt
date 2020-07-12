@@ -36,7 +36,7 @@ data class OneCallWeatherByLatLonResponse(
 
 fun OneCallWeatherByLatLonResponse.toEntity(): Forecast =
     Forecast(
-        country = "",
+        countryCode = "",
         city = "",
         current =  current.toEntity(lat, lon, timezone, timezoneOffset),
         hourly = hourly.map { it.toEntity(lat, lon, timezone, timezoneOffset, uvi = current.uvi) },

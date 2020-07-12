@@ -8,7 +8,7 @@ import kr.ohyung.data.repository.WeatherRepositoryImpl
 import kr.ohyung.domain.repository.ReverseGeocodingRepository
 import kr.ohyung.domain.repository.WeatherRepository
 import kr.ohyung.domain.usecase.GetCurrentLocationForecastUseCase
-import kr.ohyung.weather.MainViewModel
+import kr.ohyung.weather.main.MainViewModel
 import org.koin.android.viewmodel.dsl.viewModel
 import org.koin.dsl.module
 
