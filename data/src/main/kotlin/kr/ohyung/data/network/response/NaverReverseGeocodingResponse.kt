@@ -25,7 +25,7 @@ fun NaverReverseGeocodingResponse.toEntity(): LocationLegalName =
                 latitude = result.region.area3.coords.center.latitude,
                 longitude = result.region.area3.coords.center.longitude,
                 countryCode = result.region.area0.name,
-                city = String.format("%s %s %s", result.region.area1, result.region.area2, result.region.area3)
+                city = String.format("%s %s %s", result.region.area1.name, result.region.area2.name, result.region.area3.name)
             )
         }
         ?: throw LocationNotFoundException("legalName of Location cannot found")

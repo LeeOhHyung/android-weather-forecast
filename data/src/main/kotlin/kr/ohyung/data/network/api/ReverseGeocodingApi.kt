@@ -14,7 +14,7 @@ interface ReverseGeocodingApi : Api {
 
     @GET("gc")
     fun getLegalNameByLatLon(
-        @Query("coords") coords: String, // 경도, 위도
+        @Query("coords") coords: String, // longtitude,latitude
         @Query("output") output: String = OutputUnit.JSON.value
     ): Single<NaverReverseGeocodingResponse>
 }

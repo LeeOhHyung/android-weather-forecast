@@ -14,7 +14,7 @@ class MainViewModel(
 
     fun getForecast() =
         getCurrentLocationForecastUseCase
-            .execute(Pair(Double.MAX_VALUE, Double.MAX_VALUE)) // latitude, longitude
+            .execute(Pair(37.527393, 126.887577)) // latitude, longitude
             .subscribe({ forecast ->
                 // do something
                 Logger.d("forecast: $forecast")
