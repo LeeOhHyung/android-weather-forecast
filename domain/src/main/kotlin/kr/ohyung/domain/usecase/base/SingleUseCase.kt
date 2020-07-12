@@ -8,19 +8,15 @@ import io.reactivex.rxkotlin.addTo
 /**
  * Created by Lee Oh Hyoung on 2020/07/09.
  */
-abstract class SingleUseCase<T>(
+abstract class SingleUseCase<T, in Params>(
     private val executorScheduler: Scheduler,
     private val postExecutionScheduler: Scheduler
-) : BaseUseCase() {
+) : BaseUseCase<Params>() {
 
-    protected abstract fun buildUseCaseSingle(): Single<T>
+    protected abstract fun buildUseCaseSingle(params: Params): Single<T>
 
-    fun execute(observer: DisposableSingleObserver<T>) {
-        if(compositeDisposable.isDisposed.not())
-            buildUseCaseSingle()
-                .subscribeOn(executorScheduler)
-                .observeOn(postExecutionScheduler)
-                .subscribeWith(observer)
-                .addTo(compositeDisposable)
-    }
+    override fun execute(params: Params): Single<T> =
+        buildUseCaseSingle(params = params)
+            .subscribeOn(executorScheduler)
+            .observeOn(postExecutionScheduler)
 }

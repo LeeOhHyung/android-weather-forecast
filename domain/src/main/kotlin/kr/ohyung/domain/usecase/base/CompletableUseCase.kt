@@ -9,20 +9,15 @@ import kr.ohyung.domain.usecase.base.BaseUseCase
 /**
  * Created by Lee Oh Hyoung on 2020/07/09.
  */
-abstract class CompletableUseCase(
+abstract class CompletableUseCase<in Params>(
     private val executorScheduler: Scheduler,
     private val postExecutionScheduler: Scheduler
-) : BaseUseCase() {
+) : BaseUseCase<Params>() {
 
     protected abstract fun buildUseCaseCompletable(): Completable
 
-    fun execute(observer: DisposableCompletableObserver) {
-        if(compositeDisposable.isDisposed.not()) {
-            buildUseCaseCompletable()
-                .subscribeOn(executorScheduler)
-                .observeOn(postExecutionScheduler)
-                .subscribeWith(observer)
-                .addTo(compositeDisposable)
-        }
-    }
+    override fun execute(params: Params): Completable =
+        buildUseCaseCompletable()
+            .subscribeOn(executorScheduler)
+            .observeOn(postExecutionScheduler)
 }
