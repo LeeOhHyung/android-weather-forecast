@@ -4,7 +4,6 @@
 package kr.ohyung.data.network.response
 
 import com.google.gson.annotations.SerializedName
-import kr.ohyung.data.Response
 import kr.ohyung.domain.entity.Weather
 
 data class OneCallCurrentWeatherResponse(
@@ -23,30 +22,6 @@ data class OneCallCurrentWeatherResponse(
 
     @SerializedName("feel_like")
     val feelsLike: Double?,
-
-    @SerializedName("pressure")
-    override val pressure: Int,
-
-    @SerializedName("humidity")
-    override val humidity: Int,
-
-    @SerializedName("dew_point")
-    override val dewPoint: Double,
-
-    @SerializedName("uvi")
-    override val uvi: Double,
-
-    @SerializedName("clouds")
-    override val clouds: Int,
-
-    @SerializedName("visibility") // 가시거리
-    override val visibility: Int?,
-
-    @SerializedName("wind_speed")
-    override val windSpeed: Double,
-
-    @SerializedName("wind_deg")
-    override val windDeg: Int,
 
     @SerializedName("rain")
     val rain: OneCallRainResponse?,
