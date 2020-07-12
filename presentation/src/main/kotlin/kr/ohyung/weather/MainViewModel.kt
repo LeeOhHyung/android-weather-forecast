@@ -1,6 +1,8 @@
 package kr.ohyung.weather
 
 import com.orhanobut.logger.Logger
+import io.reactivex.observers.DisposableSingleObserver
+import kr.ohyung.domain.entity.Forecast
 import kr.ohyung.domain.exception.InvalidLatLonException
 import kr.ohyung.domain.usecase.GetCurrentLocationForecastUseCase
 import kr.ohyung.weather.base.BaseViewModel
@@ -27,4 +29,17 @@ class MainViewModel(
                 }
             })
             .addDisposable()
+
+    fun getForecastBySingleObserver() = 
+        getCurrentLocationForecastUseCase
+            .execute(Pair(37.527393, 126.887577)) // latitude, longitude
+            .subscribe(object: DisposableSingleObserver<Forecast>() {
+                override fun onSuccess(forecast: Forecast) {
+                    // do something with forecast
+                }
+
+                override fun onError(e: Throwable) {
+                    // exception handling
+                }
+            })
 }
