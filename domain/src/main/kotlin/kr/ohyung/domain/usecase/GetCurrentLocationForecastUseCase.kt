@@ -20,13 +20,13 @@ class GetCurrentLocationForecastUseCase(
     private val reverseGeocodingRepository: ReverseGeocodingRepository,
     executorScheduler: Scheduler = Schedulers.io(),
     postExecutionScheduler: Scheduler = AndroidSchedulers.mainThread()
-) : SingleUseCase<Forecast>(executorScheduler, postExecutionScheduler) {
+) : SingleUseCase<Forecast, Pair<Double, Double>>(executorScheduler, postExecutionScheduler) {
 
-    var latitude: Double = Double.MAX_VALUE
-    var longitude: Double = Double.MAX_VALUE
+    override fun buildUseCaseSingle(params: Pair<Double, Double>): Single<Forecast> {
+        val latitude: Double = params.first
+        val longitude: Double = params.second
 
-    override fun buildUseCaseSingle(): Single<Forecast> =
-        if(checkLocationValidation())
+        return if(checkLocationValidation(latitude, longitude))
             Single.zip(
                 weatherRepository.getWeatherByLatLon(latitude, longitude),
                 reverseGeocodingRepository.getCurrentLegalName(latitude, longitude),
@@ -43,8 +43,9 @@ class GetCurrentLocationForecastUseCase(
         else Single.error(
             InvalidLatLonException(message = "invalid latitude and longitude")
         )
+    }
 
-    private fun checkLocationValidation(): Boolean =
+    private fun checkLocationValidation(latitude: Double, longitude: Double): Boolean =
         (latitude in 32.0..43.0 && longitude in 124.0..132.0)
 
 }
