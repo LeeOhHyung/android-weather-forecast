@@ -71,6 +71,7 @@ object Libs {
     const val recyclerview = "androidx.recyclerview:recyclerview:${Versions.recyclerview}"
     const val retrofit2 = "com.squareup.retrofit2:retrofit:${Versions.retrofit2}"
     const val okHttp3 = "com.squareup.okhttp3:okhttp:${Versions.okhttp3}"
+    const val loggingInterceptor = "com.squareup.okhttp3:logging-interceptor:${Versions.okhttp3}"
     const val converterGson = "com.squareup.retrofit2:converter-gson:${Versions.converterGson}"
     const val adapterRxJava2 = "com.squareup.retrofit2:adapter-rxjava2:${Versions.adapterRxJava2}"
     const val gson = "com.google.code.gson:gson:${Versions.gson}"

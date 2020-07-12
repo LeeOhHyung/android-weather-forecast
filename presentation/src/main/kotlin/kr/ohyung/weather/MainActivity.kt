@@ -28,7 +28,7 @@ class MainActivity : BaseActivity<ActivityMainBinding, MainViewModel>() {
     }
 
     override fun doOnStart() {
-        /* explicitly empty */
+        viewModel.getForecast()
     }
 
 }
