@@ -22,6 +22,9 @@ object RetrofitManager {
     private const val WRITE_TIMEOUT: Long = 30L
     private const val READ_TIMEOUT: Long = 30L
 
+    private const val HEADER_NAVER_MAP_CLIENT_ID: String = "X-NCP-APIGW-API-KEY-ID"
+    private const val HEADER_NAVER_MAP_CLIENT_SECRET: String = "X-NCP-APIGW-API-KEY"
+
     fun getWeatherRetrofit(): Retrofit =
         getRetrofit(BuildConfig.WEATHER_BASE_URL)
 
@@ -36,6 +39,7 @@ object RetrofitManager {
             .client(getOkHttpClient())
             .build()
 
+
     private fun getOkHttpClient(): OkHttpClient =
         OkHttpClient.Builder()
             .retryOnConnectionFailure(true)
@@ -43,6 +47,7 @@ object RetrofitManager {
             .writeTimeout(WRITE_TIMEOUT, TimeUnit.SECONDS)
             .readTimeout(READ_TIMEOUT, TimeUnit.SECONDS)
             .addInterceptor(getHttpLoggerInterceptor())
+            .addInterceptor(createNaverMapHeaderInterceptor())
             .build()
 
     private fun getHttpLoggerInterceptor(): HttpLoggingInterceptor =
@@ -55,15 +60,27 @@ object RetrofitManager {
                         HttpLoggingInterceptor.Level.NONE
             }
 
-    private fun createLogger(): HttpLoggingInterceptor.Logger = object: HttpLoggingInterceptor.Logger {
-
-        override fun log(message: String) {
-            try {
-                JSONObject(message)
-                Logger.t(TAG).json(message)
-            } catch (e: JSONException) {
-                Logger.t(TAG).d(message)
-            }
+    private fun createLogger(): HttpLoggingInterceptor.Logger =
+        object: HttpLoggingInterceptor.Logger {
+            override fun log(message: String) {
+                try {
+                    JSONObject(message)
+                    Logger.t(TAG).json(message)
+                } catch (e: JSONException) {
+                    Logger.t(TAG).d(message)
+                }
         }
+    }
+
+    private fun createNaverMapHeaderInterceptor(): Interceptor =
+        object: Interceptor {
+            override fun intercept(chain: Interceptor.Chain): Response =
+                chain.proceed(
+                    chain.request().newBuilder()
+                        .addHeader(HEADER_NAVER_MAP_CLIENT_ID, BuildConfig.NAVER_MAP_CLIENT_ID)
+                        .addHeader(HEADER_NAVER_MAP_CLIENT_SECRET, BuildConfig.NAVER_MAP_CLIENT_SECRET)
+                        .build()
+                )
+
     }
 }
