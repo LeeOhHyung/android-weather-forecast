@@ -53,10 +53,10 @@ data class OneCallDailyWeatherResponse(
     val windDeg: Int,
 
     @SerializedName("rain")
-    val rain: OneCallRainResponse?,
+    val rain: Double?,
 
     @SerializedName("snow")
-    val snow: OneCallSnowResponse?,
+    val snow: Double?,
 
     @SerializedName("weather")
     val weather: List<WeatherIconResponse>
@@ -84,8 +84,8 @@ fun OneCallDailyWeatherResponse.toEntity(
         clouds = clouds,
         visibility = visibility,
         windSpeed = windSpeed,
-        rain = rain?.hourPer1,
-        snow = snow?.hourPer1,
+        rain = rain,
+        snow = snow,
         weatherName = weather.first().main,
         weatherDescription = weather.first().description,
         weatherIcon = weather.first().icon

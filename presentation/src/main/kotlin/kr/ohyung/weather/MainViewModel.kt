@@ -14,12 +14,12 @@ class MainViewModel(
 
     fun getForecast() =
         getCurrentLocationForecastUseCase
-            .execute(Pair(32.4, 127.4)) // latitude, longitude
+            .execute(Pair(Double.MAX_VALUE, Double.MAX_VALUE)) // latitude, longitude
             .subscribe({ forecast ->
                 // do something
-                Logger.d("forecast : $forecast")
+                Logger.d("forecast: $forecast")
             }, { exception ->
-                Logger.d("error : ${exception.message.toString()}")
+                Logger.d("exception: $exception, errorMessage : ${exception.message.toString()}")
 
                 // handle error
                 if(exception is InvalidLatLonException) {
