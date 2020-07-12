@@ -8,7 +8,7 @@ import kr.ohyung.data.Response
 
 data class NaverReverseGeocodingResult(
 
-    @SerializedName("name")
+    @SerializedName("name") // 주소타입(AddressType)
     val name: String,
 
     @SerializedName("code")

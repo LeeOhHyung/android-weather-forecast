@@ -30,7 +30,7 @@ class MainViewModel(
             })
             .addDisposable()
 
-    fun getForecastBySingleObserver() = 
+    fun getForecastBySingleObserver() =
         getCurrentLocationForecastUseCase
             .execute(Pair(37.527393, 126.887577)) // latitude, longitude
             .subscribe(object: DisposableSingleObserver<Forecast>() {

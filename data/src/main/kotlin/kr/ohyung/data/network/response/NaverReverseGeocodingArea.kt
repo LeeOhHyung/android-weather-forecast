@@ -23,7 +23,7 @@ data class NaverReverseGeocodingArea(
 
         data class CenterResponse(
 
-            @SerializedName("crs")
+            @SerializedName("crs") // 좌표계
             val crs: String,
 
             @SerializedName("x") // 경도(longitude)
