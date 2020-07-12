@@ -2,6 +2,9 @@ package kr.ohyung.data.network
 
 import kr.ohyung.data.BuildConfig
 import com.orhanobut.logger.Logger
+import kr.ohyung.data.network.api.ReverseGeocodingApi
+import kr.ohyung.data.network.api.WeatherApi
+import kr.ohyung.domain.exception.UnsupportedApiException
 import okhttp3.*
 import okhttp3.logging.HttpLoggingInterceptor
 import org.json.JSONException
@@ -25,13 +28,18 @@ object RetrofitManager {
     private const val HEADER_NAVER_MAP_CLIENT_ID: String = "X-NCP-APIGW-API-KEY-ID"
     private const val HEADER_NAVER_MAP_CLIENT_SECRET: String = "X-NCP-APIGW-API-KEY"
 
-    fun getWeatherRetrofit(): Retrofit =
-        getRetrofit(BuildConfig.WEATHER_BASE_URL)
+    inline fun <reified T> create(service: Class<T>): T =
+        when(T::class.java) {
+            WeatherApi::class.java -> {
+                getRetrofit(BuildConfig.WEATHER_BASE_URL).create(service)
+            }
+            ReverseGeocodingApi::class.java -> {
+                getRetrofit(BuildConfig.NAVER_MAP_BASE_URL).create(service)
+            }
+            else -> throw UnsupportedApiException("unsupported retrofit service api")
+        }
 
-    fun getNaverMapRetrofit(): Retrofit =
-        getRetrofit(BuildConfig.NAVER_MAP_BASE_URL)
-
-    private fun getRetrofit(baseUrl: String) : Retrofit =
+    fun getRetrofit(baseUrl: String) : Retrofit =
         Retrofit.Builder()
             .baseUrl(baseUrl)
             .addConverterFactory(GsonConverterFactory.create())
@@ -80,7 +88,7 @@ object RetrofitManager {
                         .addHeader(HEADER_NAVER_MAP_CLIENT_ID, BuildConfig.NAVER_MAP_CLIENT_ID)
                         .addHeader(HEADER_NAVER_MAP_CLIENT_SECRET, BuildConfig.NAVER_MAP_CLIENT_SECRET)
                         .build()
-                )
+               )
 
     }
 }
