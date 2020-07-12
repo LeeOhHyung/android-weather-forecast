@@ -57,6 +57,7 @@ dependencies {
     // Retrofit, OkHttp, Gson
     implementation(Libs.retrofit2)
     implementation(Libs.okHttp3)
+    implementation(Libs.loggingInterceptor)
     implementation(Libs.converterGson)
     implementation(Libs.adapterRxJava2)
     implementation(Libs.gson)

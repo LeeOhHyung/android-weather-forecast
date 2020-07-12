@@ -3,6 +3,7 @@ package kr.ohyung.data.network
 import kr.ohyung.data.BuildConfig
 import com.orhanobut.logger.Logger
 import okhttp3.*
+import okhttp3.logging.HttpLoggingInterceptor
 import org.json.JSONException
 import org.json.JSONObject
 import retrofit2.Retrofit
@@ -40,28 +41,27 @@ class RetrofitManager {
             .connectTimeout(CONNECT_TIMEOUT, TimeUnit.SECONDS)
             .writeTimeout(WRITE_TIMEOUT, TimeUnit.SECONDS)
             .readTimeout(READ_TIMEOUT, TimeUnit.SECONDS)
-            .addInterceptor(getLoggerInterceptor())
+            .addInterceptor(getHttpLoggerInterceptor())
             .build()
 
-    private fun getLoggerInterceptor(): Interceptor = object: Interceptor {
+    private fun getHttpLoggerInterceptor(): HttpLoggingInterceptor =
+        HttpLoggingInterceptor(createLogger())
+            .apply {
+                level =
+                    if(BuildConfig.DEBUG)
+                        HttpLoggingInterceptor.Level.BODY
+                    else
+                        HttpLoggingInterceptor.Level.NONE
+            }
 
-        override fun intercept(chain: Interceptor.Chain): Response {
-            val response: Response = chain.proceed(chain.request().newBuilder().build())
-            val request: Request = chain.request().newBuilder().build()
-            val body: String = response.body?.string() ?: ""
+    private fun createLogger(): HttpLoggingInterceptor.Logger = object: HttpLoggingInterceptor.Logger {
+
+        override fun log(message: String) {
             try {
-                JSONObject(body)
-                Logger.t(TAG).json(body)
+                JSONObject(message)
+                Logger.t(TAG).json(message)
             } catch (e: JSONException) {
-                Logger.t(TAG).d(body)
-            } finally {
-                Logger.d("REQUEST : $request")
-                return response.newBuilder()
-                    .body(
-                        ResponseBody.create(
-                        response.body?.contentType(),
-                        body))
-                    .build()
+                Logger.t(TAG).d(message)
             }
         }
     }
