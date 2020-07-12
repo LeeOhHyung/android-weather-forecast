@@ -5,6 +5,7 @@ package kr.ohyung.data.network.response
 
 import com.google.gson.annotations.SerializedName
 import kr.ohyung.data.Response
+import kr.ohyung.domain.entity.AddressType
 import kr.ohyung.domain.entity.LocationLegalName
 import kr.ohyung.domain.exception.LocationNotFoundException
 
@@ -18,8 +19,8 @@ data class NaverReverseGeocodingResponse(
 ) : Response
 
 fun NaverReverseGeocodingResponse.toEntity(): LocationLegalName =
-    results.firstOrNull { it.name == "legalcode" }
-        ?.let {  result ->
+    results.firstOrNull { it.name == AddressType.LEGAL.value }
+        ?.let { result ->
             LocationLegalName(
                 id = result.code.id.toLong(),
                 latitude = result.region.area3.coords.center.latitude,
