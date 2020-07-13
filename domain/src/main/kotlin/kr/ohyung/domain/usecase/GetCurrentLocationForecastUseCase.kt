@@ -32,7 +32,7 @@ class GetCurrentLocationForecastUseCase(
                 reverseGeocodingRepository.getCurrentLegalName(latitude, longitude),
                 BiFunction { emptyCityForecast: Forecast, legalName: LocationLegalName ->
                     Forecast(
-                        country = legalName.countryCode,
+                        countryCode = legalName.countryCode,
                         city = legalName.city,
                         current = emptyCityForecast.current,
                         hourly = emptyCityForecast.hourly,

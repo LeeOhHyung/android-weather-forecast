@@ -17,6 +17,10 @@ android {
 
         buildConfigField("String", "WEATHER_BASE_URL", "\"https://api.openweathermap.org/data/2.5/\"")
         buildConfigField("String", "WEATHER_API_KEY", "\"229072594908000fcececd9a2a4c1b82\"")
+
+        buildConfigField("String", "NAVER_MAP_BASE_URL", "\"https://naveropenapi.apigw.ntruss.com/map-reversegeocode/v2/\"")
+        buildConfigField("String", "NAVER_MAP_CLIENT_ID", "\"nhwcjz7ozj\"")
+        buildConfigField("String", "NAVER_MAP_CLIENT_SECRET", "\"HYBuDtYN5BEdh4Mqvdca5UnX9Yzepjo5ETL0kZiV\"")
     }
 
     buildTypes {

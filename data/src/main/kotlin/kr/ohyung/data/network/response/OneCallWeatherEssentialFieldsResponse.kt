@@ -4,8 +4,9 @@
 package kr.ohyung.data.network.response
 
 import com.google.gson.annotations.SerializedName
+import kr.ohyung.data.Response
 
-open class OneCallWeatherEssentialFieldsResponse {
+open class OneCallWeatherEssentialFieldsResponse : Response {
 
     @SerializedName("pressure")
     val pressure: Int = Int.MAX_VALUE

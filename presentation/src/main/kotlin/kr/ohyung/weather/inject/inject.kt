@@ -8,7 +8,7 @@ import kr.ohyung.data.repository.WeatherRepositoryImpl
 import kr.ohyung.domain.repository.ReverseGeocodingRepository
 import kr.ohyung.domain.repository.WeatherRepository
 import kr.ohyung.domain.usecase.GetCurrentLocationForecastUseCase
-import kr.ohyung.weather.MainViewModel
+import kr.ohyung.weather.main.MainViewModel
 import org.koin.android.viewmodel.dsl.viewModel
 import org.koin.dsl.module
 
@@ -33,8 +33,8 @@ private val viewModelModules = module {
 private val apiModule = module {
 
     // retrofit service
-    single { RetrofitManager().create(WeatherApi::class.java) as WeatherApi }
-    single { RetrofitManager().create(ReverseGeocodingApi::class.java) as ReverseGeocodingApi }
+    single { RetrofitManager.create(WeatherApi::class.java) as WeatherApi }
+    single { RetrofitManager.create(ReverseGeocodingApi::class.java) as ReverseGeocodingApi }
 }
 
 val modules = listOf(appModules, viewModelModules, apiModule)

@@ -1,10 +1,13 @@
-package kr.ohyung.weather
+package kr.ohyung.weather.main
 
 import android.content.Context
+import androidx.lifecycle.Observer
+import kr.ohyung.weather.R
 import kr.ohyung.weather.base.BaseActivity
 import kr.ohyung.weather.databinding.ActivityMainBinding
 import org.jetbrains.anko.intentFor
 import org.jetbrains.anko.singleTop
+import org.jetbrains.anko.toast
 import org.koin.android.viewmodel.ext.android.viewModel
 
 class MainActivity : BaseActivity<ActivityMainBinding, MainViewModel>() {
@@ -31,4 +34,17 @@ class MainActivity : BaseActivity<ActivityMainBinding, MainViewModel>() {
         viewModel.getForecast()
     }
 
+    override fun observeLiveData() {
+        viewModel.uiState.observe(this, Observer(::updateUi))
+    }
+
+    private fun updateUi(state: MainUiState) {
+        when(state) {
+            MainUiState.Loading -> { /* explicitly empty */ }
+            is MainUiState.Content -> {
+                binding.textView.text = state.toString()
+            }
+            is MainUiState.Error -> toast(state.errorMessage)
+        }
+    }
 }

@@ -3,6 +3,18 @@
  */
 package kr.ohyung.data.network.api
 
+import io.reactivex.Single
 import kr.ohyung.data.Api
+import kr.ohyung.data.network.response.NaverReverseGeocodingResponse
+import kr.ohyung.domain.entity.OutputUnit
+import retrofit2.http.GET
+import retrofit2.http.Query
 
-interface ReverseGeocodingApi : Api
+interface ReverseGeocodingApi : Api {
+
+    @GET("gc")
+    fun getLegalNameByLatLon(
+        @Query("coords") coords: String, // longtitude,latitude
+        @Query("output") output: String = OutputUnit.JSON.value
+    ): Single<NaverReverseGeocodingResponse>
+}

@@ -6,7 +6,7 @@ package kr.ohyung.domain.entity
 import kr.ohyung.domain.Entity
 
 data class Forecast(
-    val country: String,
+    val countryCode: String,
     val city: String,
     val current: Weather,
     val hourly: List<Weather>,

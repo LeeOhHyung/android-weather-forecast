@@ -2,6 +2,9 @@ package kr.ohyung.data.network
 
 import kr.ohyung.data.BuildConfig
 import com.orhanobut.logger.Logger
+import kr.ohyung.data.network.api.ReverseGeocodingApi
+import kr.ohyung.data.network.api.WeatherApi
+import kr.ohyung.domain.exception.UnsupportedApiException
 import okhttp3.*
 import okhttp3.logging.HttpLoggingInterceptor
 import org.json.JSONException
@@ -14,26 +17,36 @@ import java.util.concurrent.TimeUnit
 /**
  * Created by Lee Oh Hyoung on 2020/07/09.
  */
-class RetrofitManager {
+object RetrofitManager {
 
-    companion object {
-        private const val TAG: String = "RetrofitManager"
+    private const val TAG: String = "RetrofitManager"
 
-        private const val CONNECT_TIMEOUT: Long = 30L
-        private const val WRITE_TIMEOUT: Long = 30L
-        private const val READ_TIMEOUT: Long = 30L
-    }
+    private const val CONNECT_TIMEOUT: Long = 30L
+    private const val WRITE_TIMEOUT: Long = 30L
+    private const val READ_TIMEOUT: Long = 30L
 
-    fun <T> create(service: Class<T>): T =
-        getRetrofit().create(service)
+    private const val HEADER_NAVER_MAP_CLIENT_ID: String = "X-NCP-APIGW-API-KEY-ID"
+    private const val HEADER_NAVER_MAP_CLIENT_SECRET: String = "X-NCP-APIGW-API-KEY"
 
-    private fun getRetrofit() : Retrofit =
+    inline fun <reified T> create(service: Class<T>): T =
+        when(T::class.java) {
+            WeatherApi::class.java -> {
+                getRetrofit(BuildConfig.WEATHER_BASE_URL).create(service)
+            }
+            ReverseGeocodingApi::class.java -> {
+                getRetrofit(BuildConfig.NAVER_MAP_BASE_URL).create(service)
+            }
+            else -> throw UnsupportedApiException("unsupported retrofit service api")
+        }
+
+    fun getRetrofit(baseUrl: String) : Retrofit =
         Retrofit.Builder()
-            .baseUrl(BuildConfig.WEATHER_BASE_URL)
+            .baseUrl(baseUrl)
             .addConverterFactory(GsonConverterFactory.create())
             .addCallAdapterFactory(RxJava2CallAdapterFactory.create())
             .client(getOkHttpClient())
             .build()
+
 
     private fun getOkHttpClient(): OkHttpClient =
         OkHttpClient.Builder()
@@ -42,6 +55,7 @@ class RetrofitManager {
             .writeTimeout(WRITE_TIMEOUT, TimeUnit.SECONDS)
             .readTimeout(READ_TIMEOUT, TimeUnit.SECONDS)
             .addInterceptor(getHttpLoggerInterceptor())
+            .addInterceptor(createNaverMapHeaderInterceptor())
             .build()
 
     private fun getHttpLoggerInterceptor(): HttpLoggingInterceptor =
@@ -54,15 +68,27 @@ class RetrofitManager {
                         HttpLoggingInterceptor.Level.NONE
             }
 
-    private fun createLogger(): HttpLoggingInterceptor.Logger = object: HttpLoggingInterceptor.Logger {
-
-        override fun log(message: String) {
-            try {
-                JSONObject(message)
-                Logger.t(TAG).json(message)
-            } catch (e: JSONException) {
-                Logger.t(TAG).d(message)
-            }
+    private fun createLogger(): HttpLoggingInterceptor.Logger =
+        object: HttpLoggingInterceptor.Logger {
+            override fun log(message: String) {
+                try {
+                    JSONObject(message)
+                    Logger.t(TAG).json(message)
+                } catch (e: JSONException) {
+                    Logger.t(TAG).d(message)
+                }
         }
+    }
+
+    private fun createNaverMapHeaderInterceptor(): Interceptor =
+        object: Interceptor {
+            override fun intercept(chain: Interceptor.Chain): Response =
+                chain.proceed(
+                    chain.request().newBuilder()
+                        .addHeader(HEADER_NAVER_MAP_CLIENT_ID, BuildConfig.NAVER_MAP_CLIENT_ID)
+                        .addHeader(HEADER_NAVER_MAP_CLIENT_SECRET, BuildConfig.NAVER_MAP_CLIENT_SECRET)
+                        .build()
+               )
+
     }
 }
