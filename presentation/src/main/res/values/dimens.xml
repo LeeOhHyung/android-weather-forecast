@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <dimen name="external_margin146">146dp</dimen>
+    <dimen name="external_margin126">126dp</dimen>
+    <dimen name="external_margin116">116dp</dimen>
+    <dimen name="external_margin96">96dp</dimen>
+    <dimen name="external_margin90">90dp</dimen>
+    <dimen name="external_margin84">84dp</dimen>
+    <dimen name="external_margin82">82dp</dimen>
+    <dimen name="external_margin80">80dp</dimen>
+    <dimen name="external_margin78">78dp</dimen>
+    <dimen name="external_margin74">74dp</dimen>
+    <dimen name="external_margin70">70dp</dimen>
+    <dimen name="external_margin65">65dp</dimen>
+    <dimen name="external_margin64">64dp</dimen>
+    <dimen name="external_margin60">60dp</dimen>
+    <dimen name="external_margin58">58dp</dimen>
+    <dimen name="external_margin56">56dp</dimen>
+    <dimen name="external_margin54">54dp</dimen>
+    <dimen name="external_margin52">52dp</dimen>
+    <dimen name="external_margin50">50dp</dimen>
+    <dimen name="external_margin48">48dp</dimen>
+    <dimen name="external_margin46">46dp</dimen>
+    <dimen name="external_margin44">44dp</dimen>
+    <dimen name="external_margin42">42dp</dimen>
+    <dimen name="external_margin40">40dp</dimen>
+    <dimen name="external_margin38">38dp</dimen>
+    <dimen name="external_margin36">36dp</dimen>
+    <dimen name="external_margin34">34dp</dimen>
+    <dimen name="external_margin32">32dp</dimen>
+    <dimen name="external_margin30">30dp</dimen>
+    <dimen name="external_margin29">29dp</dimen>
+    <dimen name="external_margin28">28dp</dimen>
+    <dimen name="external_margin26">26dp</dimen>
+    <dimen name="external_margin24">24dp</dimen>
+    <dimen name="external_margin22">22dp</dimen>
+    <dimen name="external_margin20">20dp</dimen>
+    <dimen name="external_margin18">18dp</dimen>
+    <dimen name="external_margin16">16dp</dimen>
+    <dimen name="external_margin15">15dp</dimen>
+    <dimen name="external_margin14">14dp</dimen>
+    <dimen name="external_margin12">12dp</dimen>
+    <dimen name="external_margin10">10dp</dimen>
+    <dimen name="external_margin8">8dp</dimen>
+    <dimen name="external_margin6">6dp</dimen>
+    <dimen name="external_margin5">5dp</dimen>
+    <dimen name="external_margin4">4dp</dimen>
+    <dimen name="external_margin3">3dp</dimen>
+    <dimen name="external_margin2">2dp</dimen>
+    <dimen name="external_margin1">1dp</dimen>
+
+    <dimen name="internal_padding40">40dp</dimen>
+    <dimen name="internal_padding32">32dp</dimen>
+    <dimen name="internal_padding24">24dp</dimen>
+    <dimen name="internal_padding20">20dp</dimen>
+    <dimen name="internal_padding16">16dp</dimen>
+    <dimen name="internal_padding12">12dp</dimen>
+    <dimen name="internal_padding10">10dp</dimen>
+    <dimen name="internal_padding9">9dp</dimen>
+    <dimen name="internal_padding8">8dp</dimen>
+    <dimen name="internal_padding6">6dp</dimen>
+    <dimen name="internal_padding4">4dp</dimen>
+    <dimen name="internal_padding3">3dp</dimen>
+    <dimen name="internal_padding2">2dp</dimen>
+    <dimen name="internal_padding1">1dp</dimen>
+
+    <dimen name="text_size48">48dp</dimen>
+    <dimen name="text_size40">40dp</dimen>
+    <dimen name="text_size36">36dp</dimen>
+    <dimen name="text_size32">32dp</dimen>
+    <dimen name="text_size30">30dp</dimen>
+    <dimen name="text_size28">28dp</dimen>
+    <dimen name="text_size26">26dp</dimen>
+    <dimen name="text_size24">24dp</dimen>
+    <dimen name="text_size22">22dp</dimen>
+    <dimen name="text_size20">20dp</dimen>
+    <dimen name="text_size18">18dp</dimen>
+    <dimen name="text_size16">16dp</dimen>
+    <dimen name="text_size14">14dp</dimen>
+    <dimen name="text_size12">12dp</dimen>
+    <dimen name="text_size10">10dp</dimen>
+
+    <dimen name="elevation2">2dp</dimen>
+    <dimen name="elevation4">4dp</dimen>
+
+    <dimen name="corner_radius4">4dp</dimen>
+    <dimen name="corner_radius6">6dp</dimen>
+    <dimen name="corner_radius8">8dp</dimen>
+    <dimen name="corner_radius12">12dp</dimen>
+    <dimen name="corner_radius10">10dp</dimen>
+    <dimen name="corner_radius16">16dp</dimen>
+    <dimen name="corner_radius18">18dp</dimen>
+    <dimen name="corner_radius24">24dp</dimen>
+    <dimen name="corner_radius28">28dp</dimen>
+
+</resources>
