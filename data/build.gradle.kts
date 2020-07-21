@@ -1,8 +1,13 @@
 plugins {
     id("com.android.library")
+    id("jacoco")
     kotlin("android")
     kotlin("android.extensions")
     kotlin("kapt")
+}
+
+jacoco {
+    toolVersion = Versions.jacoco
 }
 
 android {
