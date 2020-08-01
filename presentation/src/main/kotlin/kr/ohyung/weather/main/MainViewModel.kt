@@ -2,10 +2,8 @@ package kr.ohyung.weather.main
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
-import com.orhanobut.logger.Logger
 import io.reactivex.Single
 import io.reactivex.observers.DisposableSingleObserver
-import kr.ohyung.domain.entity.Forecast
 import kr.ohyung.domain.exception.InvalidLatLonException
 import kr.ohyung.domain.usecase.GetCurrentLocationForecastUseCase
 import kr.ohyung.weather.base.BaseViewModel
@@ -23,9 +21,10 @@ class MainViewModel(
 
     init {
         _uiState.value = MainUiState.Loading
+        getForecast()
     }
 
-    fun getForecast() =
+    private fun getForecast() =
         getCurrentLocationForecastUseCase
             .execute(Pair(37.527393, 126.887577)) // latitude, longitude
             .flatMap { forecast -> Single.just(forecast.asState()) }

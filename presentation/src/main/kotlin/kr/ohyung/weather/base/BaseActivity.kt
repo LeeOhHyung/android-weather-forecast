@@ -18,22 +18,10 @@ abstract class BaseActivity<T: ViewDataBinding, VM: BaseViewModel> : AppCompatAc
 
     abstract fun setBindingVariable()
 
-    abstract fun doOnStart()
-
-    open fun setRecyclerView() { /* explicitly empty */ }
-
-    open fun observeLiveData() { /* explicitly empty */ }
-
-    open fun setListener() { /* explicitly empty */ }
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setBinding()
         setBindingVariable()
-        observeLiveData()
-        setRecyclerView()
-        setListener()
-        doOnStart()
     }
 
     override fun onSupportNavigateUp(): Boolean {

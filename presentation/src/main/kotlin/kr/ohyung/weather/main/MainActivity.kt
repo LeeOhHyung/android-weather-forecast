@@ -1,6 +1,7 @@
 package kr.ohyung.weather.main
 
 import android.content.Context
+import android.os.Bundle
 import androidx.lifecycle.Observer
 import kr.ohyung.weather.R
 import kr.ohyung.weather.base.BaseActivity
@@ -30,11 +31,12 @@ class MainActivity : BaseActivity<ActivityMainBinding, MainViewModel>() {
         binding.viewModel = viewModel
     }
 
-    override fun doOnStart() {
-        viewModel.getForecast()
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        setLiveDataObserver()
     }
 
-    override fun observeLiveData() {
+    private fun setLiveDataObserver() {
         viewModel.uiState.observe(this, Observer(::updateUi))
     }
 
