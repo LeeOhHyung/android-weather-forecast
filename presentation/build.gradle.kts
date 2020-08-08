@@ -51,8 +51,8 @@ android {
 
 dependencies {
 
-    api(project(":data"))
-    api(project(":domain"))
+    implementation(project(":data"))
+    implementation(project(":domain"))
 
     implementation(fileTree(mapOf("dir" to "libs", "include" to listOf("*.jar"))))
     implementation(Libs.kotlin)
@@ -64,14 +64,10 @@ dependencies {
     implementation(Libs.coreKtx)
     implementation(Libs.appcompat)
     implementation(Libs.annotation)
+    implementation(Libs.material)
 
     // Android Anko
     implementation(Libs.anko)
-
-    // Android View Libraries
-    implementation(Libs.material)
-    implementation(Libs.recyclerview)
-    implementation(Libs.cardview)
 
     // RxJava2
     implementation(Libs.rxJava2)

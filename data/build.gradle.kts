@@ -7,14 +7,8 @@ plugins {
 
 android {
     compileSdkVersion(Apps.compileSdk)
-    buildToolsVersion(Apps.buildToolVersion)
 
     defaultConfig {
-        minSdkVersion(Apps.minSdk)
-        targetSdkVersion(Apps.targetSdk)
-        versionCode = Apps.versionCode
-        versionName = Apps.versionName
-
         buildConfigField("String", "WEATHER_BASE_URL", "\"https://api.openweathermap.org/data/2.5/\"")
         buildConfigField("String", "WEATHER_API_KEY", "\"229072594908000fcececd9a2a4c1b82\"")
 
@@ -29,24 +23,15 @@ android {
         }
     }
 
-    compileOptions {
-        sourceCompatibility = Apps.sourceCompatibility
-        targetCompatibility = Apps.targetCompatibility
-    }
-
     sourceSets {
         getByName(SourceSets.MAIN).java.srcDir("src/main/kotlin")
         getByName(SourceSets.TEST).java.srcDir("src/test/kotlin")
-    }
-
-    kotlinOptions {
-        jvmTarget = Apps.jvmTarget
     }
 }
 
 dependencies {
 
-    api(project(":domain"))
+    implementation(project(":domain"))
 
     implementation(fileTree(mapOf("dir" to "libs", "include" to listOf("*.jar"))))
     implementation(Libs.kotlin)
