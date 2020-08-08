@@ -1,6 +1,7 @@
 package kr.ohyung.weather.base
 
 import android.os.Bundle
+import androidx.annotation.LayoutRes
 import androidx.appcompat.app.AppCompatActivity
 import androidx.databinding.DataBindingUtil
 import androidx.databinding.ViewDataBinding
@@ -8,20 +9,17 @@ import androidx.databinding.ViewDataBinding
 /**
  * Created by Lee Oh Hyoung on 2020/07/08.
  */
-abstract class BaseActivity<T: ViewDataBinding, VM: BaseViewModel> : AppCompatActivity() {
-
-    abstract val resourceId: Int
+abstract class BaseActivity<T: ViewDataBinding, VM: BaseViewModel>(
+    @LayoutRes private val layoutId: Int
+) : AppCompatActivity(layoutId) {
 
     protected lateinit var binding: T
 
     abstract val viewModel: VM
 
-    abstract fun setBindingVariable()
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setBinding()
-        setBindingVariable()
     }
 
     override fun onSupportNavigateUp(): Boolean {
@@ -30,7 +28,7 @@ abstract class BaseActivity<T: ViewDataBinding, VM: BaseViewModel> : AppCompatAc
     }
 
     private fun setBinding() {
-        binding = DataBindingUtil.setContentView(this, resourceId)
+        binding = DataBindingUtil.setContentView(this, layoutId)
         binding.lifecycleOwner = this
     }
 

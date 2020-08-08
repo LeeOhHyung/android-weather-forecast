@@ -53,6 +53,7 @@ object Versions {
     const val koin: String = "2.0.1"
     const val lottie: String = "3.4.0"
     const val logger: String = "2.2.0"
+    const val googlePlayServiceLocation: String = "17.0.0"
 
     const val junit: String = "4.12"
     const val junitExt: String = "1.1.1"
@@ -96,6 +97,7 @@ object Libs {
     const val koinViewModel = "org.koin:koin-android-viewmodel:${Versions.koin}"
     const val lottie = "com.airbnb.android:lottie:${Versions.lottie}"
     const val logger = "com.orhanobut:logger:${Versions.logger}"
+    const val googlePlayServiceLocation = "com.google.android.gms:play-services-location:${Versions.googlePlayServiceLocation}"
 }
 
 object TestLibs {

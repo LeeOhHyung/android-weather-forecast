@@ -21,12 +21,11 @@ class MainViewModel(
 
     init {
         _uiState.value = MainUiState.Loading
-        getForecast()
     }
 
-    private fun getForecast() =
+    fun getForecast(latitude: Double, longitude: Double) =
         getCurrentLocationForecastUseCase
-            .execute(Pair(37.527393, 126.887577)) // latitude, longitude
+            .execute(Pair(latitude, longitude))
             .flatMap { forecast -> Single.just(forecast.asState()) }
             .subscribe({ content ->
                 _uiState.value = content

@@ -1,3 +1,7 @@
 <resources>
     <string name="app_name">android-weather-forecast</string>
+
+    <string name="permission_location_should_show_rationale">퍼미션이 거부되었습니다. 앱을 다시 실행하여 퍼미션을 허용해주세요.</string>
+    <string name="permission_location_request_settings">퍼미션이 거부되었습니다. 설정(앱 정보)에서 퍼미션을 허용해야 합니다.</string>
+
 </resources>

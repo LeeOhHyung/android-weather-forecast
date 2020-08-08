@@ -93,6 +93,9 @@ dependencies {
     implementation(Libs.koinViewModel)
     testImplementation(TestLibs.koinTest)
 
+    // Google Play Service
+    implementation(Libs.googlePlayServiceLocation)
+
     // Lottie
     implementation(Libs.lottie)
 
