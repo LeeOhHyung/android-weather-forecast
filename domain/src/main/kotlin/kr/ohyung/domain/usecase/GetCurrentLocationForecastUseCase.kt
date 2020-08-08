@@ -5,9 +5,7 @@ package kr.ohyung.domain.usecase
 
 import io.reactivex.Scheduler
 import io.reactivex.Single
-import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.functions.BiFunction
-import io.reactivex.schedulers.Schedulers
 import kr.ohyung.domain.entity.Forecast
 import kr.ohyung.domain.entity.LocationLegalName
 import kr.ohyung.domain.exception.InvalidLatLonException
@@ -18,8 +16,8 @@ import kr.ohyung.domain.usecase.base.SingleUseCase
 class GetCurrentLocationForecastUseCase(
     private val weatherRepository: WeatherRepository,
     private val reverseGeocodingRepository: ReverseGeocodingRepository,
-    executorScheduler: Scheduler = Schedulers.io(),
-    postExecutionScheduler: Scheduler = AndroidSchedulers.mainThread()
+    executorScheduler: Scheduler,
+    postExecutionScheduler: Scheduler
 ) : SingleUseCase<Forecast, Pair<Double, Double>>(executorScheduler, postExecutionScheduler) {
 
     override fun buildUseCaseSingle(params: Pair<Double, Double>): Single<Forecast> {

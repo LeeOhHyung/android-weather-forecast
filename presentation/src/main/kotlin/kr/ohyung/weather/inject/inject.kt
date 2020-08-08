@@ -1,5 +1,7 @@
 package kr.ohyung.weather.inject
 
+import io.reactivex.android.schedulers.AndroidSchedulers
+import io.reactivex.schedulers.Schedulers
 import kr.ohyung.data.network.RetrofitManager
 import kr.ohyung.data.network.api.ReverseGeocodingApi
 import kr.ohyung.data.network.api.WeatherApi
@@ -19,7 +21,7 @@ import org.koin.dsl.module
 private val appModules = module {
 
     // usecase
-    factory { GetCurrentLocationForecastUseCase(get<WeatherRepository>(), get<ReverseGeocodingRepository>()) }
+    factory { GetCurrentLocationForecastUseCase(get(), get(), Schedulers.io(), AndroidSchedulers.mainThread()) }
 
     // repository implementation
     single { WeatherRepositoryImpl(get<WeatherApi>()) as WeatherRepository }
